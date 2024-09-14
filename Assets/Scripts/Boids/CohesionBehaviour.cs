@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class CohesionBehaviour : MonoBehaviour
 {
-    [SerializeField, Range(1, 50)] public float cohesionStrength = 1f;
+    [SerializeField, Range(1, 50)] public float cohesionStrength = 10f;
+    [SerializeField, Range(1, 200)] public float cohesionBoundary = 70f;
 
     public Vector3 CalculateCohesion(List<Transform> neighbors)
     {
@@ -12,14 +13,20 @@ public class CohesionBehaviour : MonoBehaviour
 
         foreach (var neighbor in neighbors)
         {
-            cohesionForce += neighbor.position;  // Position des Nachbarn
-            count++;
+            float distance = Vector3.Distance(transform.position, neighbor.position);
+
+            if (distance > cohesionBoundary)
+            {
+                Debug.Log("Cohesion from obj: " + this.gameObject.name + " to " + neighbor.gameObject.name);
+                cohesionForce += neighbor.position;
+                count++;
+            }
         }
 
         if (count > 0)
         {
-            cohesionForce /= count;  // Durchschnittliche Position
-            cohesionForce = (cohesionForce - transform.position).normalized;  // Richtung zum Zentrum
+            cohesionForce /= count;
+            cohesionForce = (cohesionForce - transform.position).normalized;
         }
 
         return cohesionForce * cohesionStrength;

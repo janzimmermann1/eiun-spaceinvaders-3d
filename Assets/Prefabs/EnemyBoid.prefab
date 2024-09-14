@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4830699621705409681}
   - component: {fileID: 1413923593200921188}
   - component: {fileID: 6623936868142968188}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyBoid
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a4f67fc075b4315a8b8944d6f2c6567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  separationRadius: 200
+  separationRadius: 50
   separationStrength: 30
 --- !u!114 &4830699621705409681
 MonoBehaviour:
@@ -151,7 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb791f0f19944a4db1bd43b9d43b21ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alignmentStrength: 20
+  alignmentStrength: 5
+  alignmentBoundary: 50
 --- !u!114 &1413923593200921188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cohesionStrength: 10
+  cohesionBoundary: 70
 --- !u!114 &6623936868142968188
 MonoBehaviour:
   m_ObjectHideFlags: 0

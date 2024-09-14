@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class AlignmentBehaviour : MonoBehaviour
 {
-    [SerializeField, Range(1, 50)] public float alignmentStrength = 1f;
+    [SerializeField, Range(1, 50)] public float alignmentStrength = 5f;
+    [SerializeField, Range(1, 200)] public float alignmentBoundary = 50f;
 
     public Vector3 CalculateAlignment(List<Transform> neighbors)
     {
@@ -12,14 +13,20 @@ public class AlignmentBehaviour : MonoBehaviour
 
         foreach (var neighbor in neighbors)
         {
-            alignmentForce += neighbor.forward;  // Bewegungsrichtung des Nachbarn
-            count++;
+            float distance = Vector3.Distance(transform.position, neighbor.position);
+
+            if (distance > alignmentBoundary)
+            {
+                Debug.Log("Alignment from obj: " + this.gameObject.name + " to " + neighbor.gameObject.name);
+                alignmentForce += neighbor.forward;
+                count++;
+            }
         }
 
         if (count > 0)
         {
-            alignmentForce /= count;  // Durchschnittliche Richtung
-            alignmentForce = alignmentForce.normalized;  // Richtung normalisieren
+            alignmentForce /= count; 
+            alignmentForce = alignmentForce.normalized;
         }
 
         return alignmentForce * alignmentStrength;

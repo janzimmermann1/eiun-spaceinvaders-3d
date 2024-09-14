@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class SeparationBehaviour : MonoBehaviour
 {
-    [SerializeField, Range(30, 200)] public float separationRadius = 20f;
-    [SerializeField, Range(1, 50)] public float separationStrength = 20f;
+    [SerializeField, Range(30, 200)] public float separationRadius = 50f;
+    [SerializeField, Range(1, 50)] public float separationStrength = 30f;
 
     public Vector3 CalculateSeparation(List<Transform> neighbors)
     {
@@ -16,6 +16,7 @@ public class SeparationBehaviour : MonoBehaviour
             float distance = Vector3.Distance(transform.position, neighbor.position);
             if (distance < separationRadius && distance > 0)
             {
+                Debug.Log("Separation from obj: " + this.gameObject.name + " to " + neighbor.gameObject.name);
                 Vector3 direction = (transform.position - neighbor.position).normalized;
                 separationForce += direction / distance;
                 count++;

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ChaseBehaviour : MonoBehaviour
 {
-    [SerializeField, Range(1, 90)] public float chaseStrength = 1.5f;
+    [SerializeField, Range(1, 90)] public float chaseStrength = 15f;
     
     public Vector3 CalculateChase(GameObject player)
     {
