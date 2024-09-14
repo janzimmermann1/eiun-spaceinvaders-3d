@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -31,9 +28,6 @@ public class ShipController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        screenCenter.x = Screen.width / 2f;
-        screenCenter.y = Screen.height / 2f;
-
         Cursor.lockState = CursorLockMode.Confined;
     }
 
@@ -66,35 +60,38 @@ public class ShipController : MonoBehaviour
         _lookInput = value.Get<Vector2>();
         Debug.Log("Look Input: x=" + _lookInput.x + ", y=" + _lookInput.y);
     }
-    
 
     void FixedUpdate()
     {
+        // Find ScreenCenter
+        screenCenter.x = Screen.width / 2f;
+        screenCenter.y = Screen.height / 2f;
+        
         // Calculate the mouse drag distance relative to the center and the y-axis
         mouseDistance.x = (_lookInput.x - screenCenter.x) / screenCenter.y;
         mouseDistance.y = (_lookInput.y - screenCenter.y) / screenCenter.y;
         // Hard cap it to max of 1f
         mouseDistance = Vector2.ClampMagnitude(mouseDistance, 1f);
 
-        activeRollSpeed = Mathf.Lerp(activeRollSpeed, _rollInput, rollAcceleration * Time.deltaTime);
+        activeRollSpeed = Mathf.Lerp(activeRollSpeed, _rollInput, rollAcceleration * Time.fixedDeltaTime);
 
-        transform.Rotate(-mouseDistance.y * lookRateSpeed * Time.deltaTime,
-            mouseDistance.x * lookRateSpeed * Time.deltaTime, activeRollSpeed * rollSpeed * Time.deltaTime, Space.Self);
+        transform.Rotate(-mouseDistance.y * lookRateSpeed * Time.fixedDeltaTime,
+            mouseDistance.x * lookRateSpeed * Time.fixedDeltaTime, activeRollSpeed * rollSpeed * Time.fixedDeltaTime, Space.Self);
 
         // Define directional speeds including acceleration to smooth the movement
         activeForwardSpeed = Mathf.Lerp(activeForwardSpeed, _forwardInput * forwardSpeed,
-            forwardAcceleration * Time.deltaTime);
+            forwardAcceleration * Time.fixedDeltaTime);
         activeStrafeSpeed = Mathf.Lerp(activeStrafeSpeed, _sidewaysInput * strafeSpeed,
-            strafeAcceleration * Time.deltaTime);
+            strafeAcceleration * Time.fixedDeltaTime);
         activeHoverSpeed = Mathf.Lerp(activeHoverSpeed, _hoverInput * hoverSpeed,
-            hoverAcceleration * Time.deltaTime);
+            hoverAcceleration * Time.fixedDeltaTime);
 
         // Set new position if not collided
         if(!_isCollided) 
         {
-            transform.position += transform.forward * (activeForwardSpeed * Time.deltaTime) // Front/Back Movement
-                                  + transform.right * (activeStrafeSpeed * Time.deltaTime) // Left/Right Movement
-                                  + transform.up * (activeHoverSpeed * Time.deltaTime); // Up/Down Movement
+            transform.position += transform.forward * (activeForwardSpeed * Time.fixedDeltaTime) // Front/Back Movement
+                                  + transform.right * (activeStrafeSpeed * Time.fixedDeltaTime) // Left/Right Movement
+                                  + transform.up * (activeHoverSpeed * Time.fixedDeltaTime); // Up/Down Movement
         }
     }
 
