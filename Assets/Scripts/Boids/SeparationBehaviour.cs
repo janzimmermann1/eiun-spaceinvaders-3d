@@ -16,7 +16,6 @@ public class SeparationBehaviour : MonoBehaviour
             float distance = Vector3.Distance(transform.position, neighbor.position);
             if (distance < separationRadius && distance > 0)
             {
-                Debug.Log("Separation from obj: " + this.gameObject.name + " to " + neighbor.gameObject.name);
                 Vector3 direction = (transform.position - neighbor.position).normalized;
                 separationForce += direction / distance;
                 count++;

@@ -17,7 +17,6 @@ public class CohesionBehaviour : MonoBehaviour
 
             if (distance > cohesionBoundary)
             {
-                Debug.Log("Cohesion from obj: " + this.gameObject.name + " to " + neighbor.gameObject.name);
                 cohesionForce += neighbor.position;
                 count++;
             }

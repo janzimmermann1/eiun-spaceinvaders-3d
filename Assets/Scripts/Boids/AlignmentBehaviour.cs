@@ -17,7 +17,6 @@ public class AlignmentBehaviour : MonoBehaviour
 
             if (distance > alignmentBoundary)
             {
-                Debug.Log("Alignment from obj: " + this.gameObject.name + " to " + neighbor.gameObject.name);
                 alignmentForce += neighbor.forward;
                 count++;
             }

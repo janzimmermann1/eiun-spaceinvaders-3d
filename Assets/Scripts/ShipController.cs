@@ -24,8 +24,7 @@ public class ShipController : MonoBehaviour
     {
         Collided?.Invoke(this, new CollidedEventArgs {IsCollided = isCollided});
     }
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
@@ -34,31 +33,26 @@ public class ShipController : MonoBehaviour
     void OnForward(InputValue value)
     {
         _forwardInput = value.Get<float>();
-        Debug.Log("Forward Input: " + _forwardInput);
     }
 
     void OnSideways(InputValue value)
     {
         _sidewaysInput = value.Get<float>();
-        Debug.Log("Sideways Input: " + _sidewaysInput);
     }
 
     void OnHover(InputValue value)
     {
         _hoverInput = value.Get<float>();
-        Debug.Log("Hover Input: " + _hoverInput);
     }
 
     void OnRoll(InputValue value)
     {
         _rollInput = value.Get<float>();
-        Debug.Log("Roll Input: " + _rollInput);
     }
 
     void OnLook(InputValue value)
     {
         _lookInput = value.Get<Vector2>();
-        Debug.Log("Look Input: x=" + _lookInput.x + ", y=" + _lookInput.y);
     }
 
     void FixedUpdate()
