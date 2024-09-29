@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,13 @@ public class BoidController : MonoBehaviour
     private AlignmentBehaviour _alignmentBehaviour;
     private CohesionBehaviour _cohesionBehaviour;
     private ChaseBehaviour _chaseBehaviour;
+    
+    public event EventHandler<CollidedEventArgs> Collided;
+    
+    protected virtual void OnCollided(bool isCollided)
+    {
+        Collided?.Invoke(this, new CollidedEventArgs {IsCollided = isCollided});
+    }
 
     void Start()
     {
@@ -32,6 +40,16 @@ public class BoidController : MonoBehaviour
         move += _separationBehaviour.CalculateSeparation(neighbors);
 
         MoveBoid(move);
+    }
+    
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Boid Controller: Collision detected with " + collision.gameObject.tag);
+        if (collision.gameObject.CompareTag("Terrain"))
+        {
+            maxSpeed = 0f;
+            OnCollided(true);
+        }
     }
 
     private List<Transform> FindNeighbors()
@@ -61,5 +79,10 @@ public class BoidController : MonoBehaviour
         {
             transform.forward = move.normalized;
         }
+    }
+    
+    public class CollidedEventArgs : EventArgs
+    {
+        public bool IsCollided { get; set; }
     }
 }
