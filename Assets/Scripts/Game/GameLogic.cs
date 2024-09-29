@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TriangleNet;
 using UnityEngine;
 
 public class GameLogic : MonoBehaviour
@@ -21,6 +22,7 @@ public class GameLogic : MonoBehaviour
         {
             if (!_enemies.Contains(e))
             {
+                Debug.Log("Add OnEnemyCollided");
                 e.GetComponent<BoidController>().Collided += OnEnemyCollided;
                 _enemies.Add(e);
             }

@@ -44,12 +44,9 @@ public class BoidController : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Boid Controller: Collision detected with " + collision.gameObject.tag);
-        if (collision.gameObject.CompareTag("Terrain"))
-        {
-            maxSpeed = 0f;
-            OnCollided(true);
-        }
+        Debug.Log("Boid Controller: Collision detected with " + collision.gameObject.name);
+        maxSpeed = 0f;
+        OnCollided(true);
     }
 
     private List<Transform> FindNeighbors()
