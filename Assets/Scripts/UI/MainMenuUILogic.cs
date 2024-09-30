@@ -13,13 +13,6 @@ public class MainMenuUILogic : MonoBehaviour
     private const string QuitButtonName = "quit-button";
     private UIDocument _mainMenuUIDocument;
 
-    public event EventHandler NewTerrainButtonPressed;
-
-    protected virtual void OnNewTerrainButtonPressed()
-    {
-        NewTerrainButtonPressed?.Invoke(this, EventArgs.Empty);
-    }
-
     private void OnEnable()
     {
         _mainMenuUIDocument = GetComponent<UIDocument>();
@@ -51,7 +44,6 @@ public class MainMenuUILogic : MonoBehaviour
             var script = terrainObject.GetComponent<LowPolyGenerator>();
             script.seed = Random.Range(0, 100);
             script.Initiate();
-            OnNewTerrainButtonPressed();
         };
         _mainMenuUIDocument.rootVisualElement.Q<Button>(QuitButtonName).clicked += () =>
         {

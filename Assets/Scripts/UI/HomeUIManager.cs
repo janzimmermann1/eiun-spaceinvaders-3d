@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class HomeUIManager : MonoBehaviour
@@ -9,15 +8,5 @@ public class HomeUIManager : MonoBehaviour
     private void Awake()
     {
         _mainMenuPanel = Instantiate(mainMenuPanelPrefab, transform);
-    }
-
-    private void Start()
-    {
-        _mainMenuPanel.NewTerrainButtonPressed += OnNewTerrainButtonPressed;
-    }
-
-    private void OnNewTerrainButtonPressed(object sender, EventArgs e)
-    {
-        Debug.Log($"OnNewTerrainButtonPressed: {sender}");
     }
 }

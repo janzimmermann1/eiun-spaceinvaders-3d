@@ -1,41 +1,48 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneUIManager : MonoBehaviour
 {
-    /*[SerializeField] private OverlayUILogic overlayUILogic;
-    [SerializeField] private CartEditorUILogic cartEditorPanelPrefab;
-    private OverlayUILogic _overlayPanel;
-    private CartEditorUILogic _cartEditorPanel;
-    private float _timeScale;
-
+    [SerializeField]
+    private PauseMenuUILogic _pauseMenuUILogic;
+    private PauseMenuUILogic _pauseMenuPanel;
+    private ShipController _playerShipController;
+    
     private void Awake()
     {
-        _overlayPanel = Instantiate(overlayUILogic, transform);
-        _cartEditorPanel = Instantiate(cartEditorPanelPrefab, transform);
+        _pauseMenuPanel = Instantiate(_pauseMenuUILogic, transform);
+        _playerShipController = FindObjectOfType<ShipController>();
     }
-
+    
     private void Start()
     {
-        _cartEditorPanel.gameObject.SetActive(false);
-        _overlayPanel.EditCartButtonPressed += OnEditCartButtonPressed;
-        _cartEditorPanel.LeaveEditorMenu += OnLeaveEditorMenu;
-    }
+        _pauseMenuPanel.gameObject.SetActive(false);
+        _playerShipController.MenuTriggered += (sender, args) =>
+        {
+            if (args.IsOpen)
+            {
+                _pauseMenuPanel.gameObject.SetActive(true);
+            }
+            else
+            {
+                _pauseMenuPanel.gameObject.SetActive(false);
+            }
+        };
         
-    private void OnEditCartButtonPressed(object sender, EventArgs e)
-    {
-        _timeScale = Time.timeScale;
-        Time.timeScale = 0;
-        _overlayPanel.gameObject.SetActive(false);
-        _cartEditorPanel.gameObject.SetActive(true); 
+        _playerShipController.Collided += (sender, args) =>
+        {
+            if (args.IsCollided)
+            {
+                StartCoroutine(DelayedSceneLoad(4f));
+            }
+        };
     }
-        
-    private void OnLeaveEditorMenu(object sender, EventArgs e)
+    
+    private IEnumerator DelayedSceneLoad(float delay)
     {
-        Time.timeScale = _timeScale;
-        _overlayPanel.gameObject.SetActive(true);
-        _cartEditorPanel.gameObject.SetActive(false);
-    }*/
+        yield return new WaitForSeconds(delay);
+        int sceneNr = 0;
+        SceneManager.LoadScene(sceneNr);
+    }
 }

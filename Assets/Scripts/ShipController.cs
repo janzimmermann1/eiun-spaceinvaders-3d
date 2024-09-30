@@ -18,11 +18,18 @@ public class ShipController : MonoBehaviour
     public float rollSpeed = 90f, rollAcceleration = 3.5f;
 
     private bool _isCollided = false;
+    private bool _isMenuOpen = false;
     public event EventHandler<CollidedEventArgs> Collided;
+    public event EventHandler<MenuTriggeredArgs> MenuTriggered;
     
     protected virtual void OnCollided(bool isCollided)
     {
         Collided?.Invoke(this, new CollidedEventArgs {IsCollided = isCollided});
+    }
+
+    public virtual void OnMenuTriggered(bool isOpen)
+    {
+        MenuTriggered?.Invoke(this, new MenuTriggeredArgs() {IsOpen = isOpen});
     }
     
     void Start()
@@ -53,6 +60,12 @@ public class ShipController : MonoBehaviour
     void OnLook(InputValue value)
     {
         _lookInput = value.Get<Vector2>();
+    }
+
+    void OnMenu(InputValue value)
+    {
+        _isMenuOpen = !_isMenuOpen;
+        OnMenuTriggered(_isMenuOpen);
     }
 
     void FixedUpdate()
@@ -111,5 +124,10 @@ public class ShipController : MonoBehaviour
     public class CollidedEventArgs : EventArgs
     {
         public bool IsCollided { get; set; }
+    }
+    
+    public class MenuTriggeredArgs : EventArgs
+    {
+        public bool IsOpen { get; set; }
     }
 }
