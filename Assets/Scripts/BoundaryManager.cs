@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class BoundaryManager : MonoBehaviour
@@ -5,6 +6,13 @@ public class BoundaryManager : MonoBehaviour
     public float _boundaryRadius = 1250f;
     private Transform _playerTransform;
     private Vector3 _boundaryCenter;
+    
+    public event EventHandler BoundaryReached;
+    
+    protected virtual void OnBoundaryReached(bool hasReached)
+    {
+        BoundaryReached?.Invoke(this, new BoundaryReachedArgs {HasReached = hasReached});
+    }
     
     void Start()
     {
@@ -20,6 +28,16 @@ public class BoundaryManager : MonoBehaviour
         Vector3 direction = _playerTransform.position - _boundaryCenter;
         float distance = direction.magnitude;
 
+        // Wenn der Spieler nahe der Grenze ist
+        if (distance > _boundaryRadius - 100)
+        {
+            OnBoundaryReached(hasReached: true);
+        } 
+        else
+        {
+            OnBoundaryReached(hasReached: false);
+        }
+        
         // Wenn der Spieler außerhalb der Grenze ist
         if (distance > _boundaryRadius)
         {
@@ -29,5 +47,10 @@ public class BoundaryManager : MonoBehaviour
             // Setze die Position des Spielers auf den Rand der Grenze
             _playerTransform.position = boundaryPoint;
         }
+    }
+    
+    public class BoundaryReachedArgs : EventArgs
+    {
+        public bool HasReached { get; set; }
     }
 }

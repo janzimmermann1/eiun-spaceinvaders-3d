@@ -15,7 +15,7 @@ public class ScoreUI : MonoBehaviour
             _score = PersistentDataManager.EnemyDestroyed;
             _highScore = PersistentDataManager.EnemiesDestroyedHighScore;
         };
-        _score = PersistentDataManager.EnemyDestroyed;
+        _score = 0;
         _highScore = PersistentDataManager.EnemiesDestroyedHighScore;
         useGUILayout = true;
     }
