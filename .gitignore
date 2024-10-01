@@ -80,3 +80,4 @@ crashlytics-build.properties
 #IntelliJ
 /.git/
 /.idea/
+/Builds/

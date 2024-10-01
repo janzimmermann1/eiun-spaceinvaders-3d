@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/EasyLevel.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Test/TestPlayerAndBoundary.unity
-    guid: 12a932b39b7c64d29a7c5fff7c862d46
+    path: Assets/Scenes/HardLevel.unity
+    guid: 109753dd90daf42c8913b96f6d336223
   m_configObjects: {}

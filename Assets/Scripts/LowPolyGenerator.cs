@@ -5,7 +5,9 @@ using UnityEngine;
 using TriangleNet.Topology;
 using TriangleNet.Geometry;
 using TriangleNet.Meshing;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 
 public enum ColorSetting
@@ -220,7 +222,9 @@ public class LowPolyGenerator : MonoBehaviour
         if (transform.GetComponent<MeshFilter>() != null)
         {
             var path = "Assets/GeneratedMesh" + seed.ToString() + ".asset";
-            AssetDatabase.CreateAsset(transform.GetComponent<MeshFilter>().sharedMesh, path );
+            #if UNITY_EDITOR
+                AssetDatabase.CreateAsset(transform.GetComponent<MeshFilter>().sharedMesh, path );
+            #endif
         }
     }
 
