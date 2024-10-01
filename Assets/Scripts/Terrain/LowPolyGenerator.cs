@@ -1,15 +1,16 @@
-using System.Collections;
 using System.Collections.Generic;
-using TriangleNet;
-using UnityEngine;
-using TriangleNet.Topology;
 using TriangleNet.Geometry;
 using TriangleNet.Meshing;
+using TriangleNet.Topology;
+using UnityEngine;
+using Mesh = TriangleNet.Mesh;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-
+/**
+ * @author: https://github.com/KristinLague/Low-Poly-Terrain-Generator
+ */
 public enum ColorSetting
 {
     Random,
@@ -54,7 +55,7 @@ public class LowPolyGenerator : MonoBehaviour
     
     private List<Vector2> poissonPoints = new List<Vector2>();
     private Polygon polygon;
-    private TriangleNet.Mesh mesh;
+    private Mesh mesh;
     private UnityEngine.Mesh terrainMesh;
     private List<float> heights = new List<float>();
 
@@ -89,7 +90,7 @@ public class LowPolyGenerator : MonoBehaviour
         ConstraintOptions constraints = new ConstraintOptions();
         constraints.ConformingDelaunay = true;
 
-        mesh = polygon.Triangulate(constraints) as TriangleNet.Mesh;
+        mesh = polygon.Triangulate(constraints) as Mesh;
 
         ShapeTerrain();
         GenerateMesh();

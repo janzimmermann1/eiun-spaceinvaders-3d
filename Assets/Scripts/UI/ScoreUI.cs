@@ -2,15 +2,12 @@ using UnityEngine;
 
 public class ScoreUI : MonoBehaviour
 {
-    private GameLogic _gameLogic;
-
     private int _score = 0;
     private int _highScore = 0;
 
     private void Start()
     {
-        _gameLogic = FindObjectOfType<GameLogic>();
-        _gameLogic.EnemyDestroyed += (sender, args) =>
+        PersistentDataManager.DataChangedEvent += (sender, args) =>
         {
             _score = PersistentDataManager.EnemyDestroyed;
             _highScore = PersistentDataManager.EnemiesDestroyedHighScore;

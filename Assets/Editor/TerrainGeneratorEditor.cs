@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEditor;
 using UnityEngine;
-using UnityEditor;
 
-
+/**
+ * @author: https://github.com/KristinLague/Low-Poly-Terrain-Generator
+ */
 [CustomEditor(typeof(LowPolyGenerator))]
 public class TerrainGeneratorEditor : Editor
 {

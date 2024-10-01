@@ -116,7 +116,7 @@ public class ShipController : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
             rb.useGravity = false;
 
-            this._isCollided = true;
+            _isCollided = true;
             OnCollided(_isCollided);
         }
     }

@@ -38,13 +38,10 @@ public class BoundaryManager : MonoBehaviour
             OnBoundaryReached(hasReached: false);
         }
 
-        // Wenn der Spieler außerhalb der Grenze ist
+        // Zurücksetzen des Spielers, wenn er sich ausserhalb der Boundary befindet
         if (distance > _boundaryRadius)
         {
-            // Berechne die neue Position des Spielers direkt auf der Grenze
             Vector3 boundaryPoint = _boundaryCenter + direction.normalized * _boundaryRadius;
-
-            // Setze die Position des Spielers auf den Rand der Grenze
             _playerTransform.position = boundaryPoint;
         }
     }
