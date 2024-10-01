@@ -3,6 +3,8 @@
 **SpaceInvaders - 3D** ist ein Weltraumspiel, in dem es das Ziel ist, feindliche Raumschiffe zu eliminieren und das eigene Überleben zu sichern. Die feindlichen Raumschiffe werden pro Level verstärkt und das Terrain wird dynamisch generiert.
 ![Screenshot SpaceInvaders - 3D](images/titleimage.png)
 
+> Spiele jetzt [SpaceInviders - 3D](https://brjaenu.itch.io/spaceinvaders-3d-web) auf itch.io
+
 ## Steuerung:
 - **W, A, S, D**: Vorwärts, Links, Rückwärts, Rechts
 - **Q, E**: Rolle nach Links, Rolle nach Rechts
