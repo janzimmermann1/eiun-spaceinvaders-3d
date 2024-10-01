@@ -1,7 +1,7 @@
 # SpaceInvaders - 3D
 
 **SpaceInvaders - 3D** is a space game where the goal is to eliminate enemy spaceships and ensure your own survival. Enemy spaceships become stronger with each level, and the terrain is dynamically generated.
-![Screenshot SpaceInvaders - 3D](https://github.com/janzimmermann1/eiun_spaceinvaders/blob/main/images/titleimage.png)
+![Screenshot SpaceInvaders - 3D](https://github.com/janzimmermann1/eiun_spaceinvaders/blob/main/Images/titleimage.png)
 
 > Play now [SpaceInvaders - 3D](https://brjaenu.itch.io/spaceinvaders-3d-web) on itch.io
 
