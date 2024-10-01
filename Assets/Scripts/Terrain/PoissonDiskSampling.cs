@@ -1,7 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * @author: https://github.com/KristinLague/Low-Poly-Terrain-Generator
+ */
 public static class PoissonDiscSampling {
 
 	public static List<Vector2> GeneratePoints(float radius, Vector2 sampleRegionSize, int numSamplesBeforeRejection = 30) {
