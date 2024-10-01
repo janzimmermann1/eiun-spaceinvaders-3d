@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class GameLogic : MonoBehaviour
 {
-    private GameObject _player;
     private List<GameObject> _enemies;
     
     public event EventHandler EnemyDestroyed;
@@ -17,7 +16,6 @@ public class GameLogic : MonoBehaviour
     
     void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
         _enemies = new List<GameObject>();
         PersistentDataManager.EnemyDestroyed = 0;
     }
